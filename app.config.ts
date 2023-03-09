@@ -1,5 +1,5 @@
 export default defineAppConfig({
-  title: 'LAN Devices Watcher',
+  title: 'LAN Hosts Watcher',
   theme: {
     dark: false,
   },

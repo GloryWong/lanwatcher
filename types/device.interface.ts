@@ -1,7 +1,3 @@
-export interface Device {
-  ip: string;
-  mac: string;
-  name?: string;
-  vendor?: string;
-  isHostDevice?: boolean;
-}
+import Arpping from 'arpping';
+
+export type Device = typeof Arpping.prototype.myDevice;

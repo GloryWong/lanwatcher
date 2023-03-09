@@ -2,5 +2,6 @@ import { contextBridge, ipcRenderer } from 'electron';
 import { ElectronAPI } from '~~/types';
 
 contextBridge.exposeInMainWorld('electronAPI', {
-  fetchLocalDevices: () => ipcRenderer.invoke('getLocalDevices'),
+  fetchLocalHosts: () => ipcRenderer.invoke('fetchLocalHosts'),
+  getMyDevice: () => ipcRenderer.invoke('getMyDevice'),
 } as ElectronAPI);

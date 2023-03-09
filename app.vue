@@ -1,9 +1,9 @@
 <template>
-  <v-layout class="h-screeen">
-    <!-- <v-app-bar title="Lan watcher"></v-app-bar> -->
-    <!-- <v-navigation-drawer></v-navigation-drawer> -->
-    <v-main class="pa-6">
-      <DeviceList />
+  <v-layout class="h-screen">
+    <v-main class="d-flex flex-column">
+      <MyDevice class="flex-shrink-0" />
+      <v-divider></v-divider>
+      <HostList class="flex-grow-1" />
     </v-main>
   </v-layout>
 </template>

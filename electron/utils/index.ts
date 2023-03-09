@@ -1,1 +1,2 @@
-export * from './getLocalDevices';
+export * from './fetchLocalHosts';
+export * from './getMyDevice';

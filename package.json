@@ -1,7 +1,7 @@
 {
   "name": "lanwatcher",
   "version": "0.1.0",
-  "description": "Watching the devices in your local area network",
+  "description": "Watching the hosts in your local area network",
   "author": "glorywong1001@gmail.com",
   "main": "dist-electron/main.js",
   "private": true,

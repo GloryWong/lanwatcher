@@ -1,7 +1,7 @@
 import path from 'path';
 import { release } from 'os';
 import { app, BrowserWindow, ipcMain, shell } from 'electron';
-import { getLocalDevices } from './utils';
+import { fetchLocalHosts, getMyDevice } from './utils';
 
 // Remove electron security warnings only in development mode
 // Read more on https://www.electronjs.org/docs/latest/tutorial/securit
@@ -75,6 +75,7 @@ app.on('activate', () => {
 });
 
 app.whenReady().then(() => {
-  ipcMain.handle('getLocalDevices', getLocalDevices);
+  ipcMain.handle('getMyDevice', getMyDevice);
+  ipcMain.handle('fetchLocalHosts', fetchLocalHosts);
   createWindow();
 });

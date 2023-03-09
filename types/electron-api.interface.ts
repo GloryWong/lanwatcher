@@ -1,5 +1,7 @@
 import { Device } from './device.interface';
+import { Host } from './host.interface';
 
 export interface ElectronAPI {
-  fetchLocalDevices: () => Promise<Device[]>;
+  fetchLocalHosts: () => Promise<Host[]>;
+  getMyDevice: () => Promise<Device>;
 }
