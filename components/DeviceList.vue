@@ -21,20 +21,25 @@
       >
         <thead>
           <tr>
-            <th class="text-center">Name</th>
-            <th class="text-center">Ip</th>
-            <th class="text-center">Mac</th>
+            <th class="text-center">Ip address</th>
+            <th class="text-center">MAC address</th>
+            <th class="text-center">Hostname</th>
             <th class="text-center">more</th>
           </tr>
         </thead>
         <tbody>
           <tr
-            v-for="{ name, ip, mac } in devices"
+            v-for="{ name, ip, mac, isHostDevice } in devices"
             :key="ip"
           >
-            <td class="text-center">{{ name }}</td>
-            <td class="text-center">{{ ip }}</td>
+            <td
+              class="text-center"
+              :class="{ 'font-weight-bold': isHostDevice }"
+            >
+              {{ ip }}
+            </td>
             <td class="text-center">{{ mac }}</td>
+            <td class="text-center">{{ name }}</td>
             <td class="text-center">
               <v-btn
                 variant="text"
@@ -54,10 +59,15 @@
 
   const devices = ref<Device[]>([]);
   const fetching = ref(false);
-
-  const handleRefresh = async () => {
+  const fetchLocalDevices = async () => {
     fetching.value = true;
+    console.log('start to fetch...');
     devices.value = await window.electronAPI.fetchLocalDevices();
     fetching.value = false;
+    console.log('fetched', devices.value.length, 'devices');
   };
+
+  const handleRefresh = fetchLocalDevices;
+
+  fetchLocalDevices();
 </script>

@@ -1,5 +1,7 @@
 export interface Device {
-  name?: string;
   ip: string;
-  mac?: string;
+  mac: string;
+  name?: string;
+  vendor?: string;
+  isHostDevice?: boolean;
 }

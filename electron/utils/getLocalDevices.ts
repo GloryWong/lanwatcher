@@ -1,18 +1,16 @@
-import { getDeviceByIp } from './getDeviceByIp';
-import { getLocalIPs } from './getLocalIPs';
-import { Device } from '~~/types';
+import Arpping from 'arpping';
 
-export function getLocalDevices() {
-  const ips = getLocalIPs();
+const arpping = new Arpping({
+  useCache: false,
+});
 
-  return Promise.allSettled(ips.map((ip) => getDeviceByIp(ip))).then(
-    (results) => {
-      const results$: Device[] = [];
-      results.forEach((result) => {
-        if (result.status === 'rejected' || !result.value) return;
-        results$.push(result.value);
-      });
-      return results$;
-    },
-  );
+export async function getLocalDevices() {
+  const hosts = await arpping.discover();
+
+  return hosts.map((host) => ({
+    ip: host.ip,
+    mac: host.mac,
+    name: host.name,
+    isHostDevice: host.isHostDevice,
+  }));
 }
