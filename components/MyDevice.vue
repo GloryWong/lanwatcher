@@ -8,7 +8,7 @@
     <template #append>
       <div class="text-body2 d-flex align-center pr-4">
         <span class="pr-2 text-grey-darken-1">Current interface:</span>
-        <span>{{ networkInterface?.name }}</span>
+        <span>{{ networkInfo?.name }}</span>
       </div>
     </template>
     <v-card-text>
@@ -34,30 +34,25 @@
 </template>
 
 <script setup lang="ts">
-import { NetworkInterface } from '~~/electron/utils/getNetworkInterface';
-
-const networkInterface = ref<NetworkInterface>();
-window.electronAPI.getNetworkInterface().then((device) => {
-  networkInterface.value = device;
-});
+const { networkInfo } = useNetworkInfo();
 
 const device = computed(() => {
   return [
     {
       name: 'IP address',
-      value: networkInterface.value?.address,
+      value: networkInfo.value?.address,
     },
     {
       name: 'MAC address',
-      value: networkInterface.value?.mac,
+      value: networkInfo.value?.mac,
     },
     {
       name: 'Netmask',
-      value: networkInterface.value?.netmask,
+      value: networkInfo.value?.netmask,
     },
     {
       name: 'IP version',
-      value: networkInterface.value?.family,
+      value: networkInfo.value?.family,
     },
   ];
 });

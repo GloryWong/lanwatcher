@@ -1,9 +1,11 @@
-import { PingResponse } from 'ping';
-import { NetworkInterface } from '~~/electron/utils/getNetworkInterface';
+import { NetworkInfo } from '~/electron/utils/getNetworkInfo';
+import { ping } from '~/electron/utils/ping';
+import { pingRange } from '~/electron/utils/pingRange';
 import { DeviceInfo } from '~~/electron/utils/scanDevices';
 
 export interface ElectronAPI {
   scanDevices: () => Promise<DeviceInfo[]>;
-  getNetworkInterface: () => Promise<NetworkInterface | undefined>;
-  ping: (ips: string[]) => Promise<PingResponse[]>;
+  getNetworkInfo: () => Promise<NetworkInfo | undefined>;
+  ping: typeof ping;
+  pingRange: typeof pingRange;
 }

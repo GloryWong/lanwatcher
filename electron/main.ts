@@ -2,8 +2,9 @@ import path from 'path';
 import { release } from 'os';
 import { app, BrowserWindow, ipcMain, nativeTheme, shell } from 'electron';
 import { scanDevices } from './utils/scanDevices';
-import { getNetworkInterface } from './utils/getNetworkInterface';
 import { ping } from './utils/ping';
+import { getNetworkInfo } from './utils/getNetworkInfo';
+import { pingRange } from './utils/pingRange';
 
 // Remove electron security warnings only in development mode
 // Read more on https://www.electronjs.org/docs/latest/tutorial/securit
@@ -79,9 +80,12 @@ app.on('activate', () => {
 });
 
 app.whenReady().then(() => {
-  ipcMain.handle('getNetworkInterface', getNetworkInterface);
+  ipcMain.handle('getNetworkInfo', getNetworkInfo);
   ipcMain.handle('scanDevices', scanDevices);
   ipcMain.handle('ping', (evt, ips: string[]) => ping(ips));
+  ipcMain.handle('pingRange', (evt, start: number, end: number) =>
+    pingRange(start, end),
+  );
   ipcMain.handle('dark-mode:toggle', () => {
     if (nativeTheme.shouldUseDarkColors) {
       nativeTheme.themeSource = 'light';

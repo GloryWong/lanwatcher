@@ -3,8 +3,10 @@ import { DarkMode, ElectronAPI } from '~~/types';
 
 contextBridge.exposeInMainWorld('electronAPI', {
   scanDevices: () => ipcRenderer.invoke('scanDevices'),
-  getNetworkInterface: () => ipcRenderer.invoke('getNetworkInterface'),
+  getNetworkInfo: () => ipcRenderer.invoke('getNetworkInfo'),
   ping: (ips: string[]) => ipcRenderer.invoke('ping', ips),
+  pingRange: (start: number, end: number) =>
+    ipcRenderer.invoke('pingRange', start, end),
   // onConnect: (callback) =>
   //   ipcRenderer.on('connect', (event, connection: Connection) => {
   //     callback(connection);
