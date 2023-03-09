@@ -1,0 +1,50 @@
+{
+  "name": "lanwatcher",
+  "version": "0.1.0",
+  "description": "Watching the devices in your local area network",
+  "author": "glorywong1001@gmail.com",
+  "main": "dist-electron/main.js",
+  "private": true,
+  "scripts": {
+    "dev": "nuxt dev -o",
+    "generate": "nuxt generate",
+    "preview": "nuxt preview",
+    "postinstall": "nuxt prepare && electron-builder install-app-deps",
+    "pack": "nuxt generate && electron-builder --dir",
+    "dist": "nuxt generate && electron-builder",
+    "lint:js": "eslint --ext \".ts,.vue\" --ignore-path .gitignore .",
+    "lint:prettier": "prettier --check .",
+    "lint": "yarn lint:js && yarn lint:prettier",
+    "lintfix": "prettier --write --list-different . && yarn lint:js --fix",
+    "prepare": "husky install"
+  },
+  "devDependencies": {
+    "@nuxtjs/eslint-config-typescript": "^12.0.0",
+    "@types/ping": "^0.4.1",
+    "@typescript-eslint/parser": "^5.54.1",
+    "editorconfig": "^1.0.2",
+    "electron": "^23.1.2",
+    "electron-builder": "^23.6.0",
+    "eslint": "^8.35.0",
+    "eslint-config-prettier": "^8.7.0",
+    "eslint-plugin-prettier": "^4.2.1",
+    "eslint-plugin-unused-imports": "^2.0.0",
+    "husky": "^8.0.3",
+    "lint-staged": "^13.1.2",
+    "nuxt": "^3.2.3",
+    "nuxt-electron": "^0.4.1",
+    "prettier": "^2.8.4",
+    "sass": "^1.58.3",
+    "type-fest": "^3.6.1",
+    "vite-electron-plugin": "^0.8.2"
+  },
+  "lint-staged": {
+    "*.[js|ts]": "eslint --cache --fix"
+  },
+  "dependencies": {
+    "@mdi/font": "^7.1.96",
+    "ip-address": "^8.1.0",
+    "ping": "^0.4.2",
+    "vuetify": "^3.1.4"
+  }
+}
