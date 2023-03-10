@@ -1,7 +1,7 @@
 <template>
   <v-card
-    title="LAN Hosts"
-    subtitle="All hosts in your local area network"
+    title="LAN Devices"
+    subtitle="All devices in your local area network"
     prepend-icon="mdi-lan"
     flat
     class="d-flex flex-column"
@@ -13,8 +13,8 @@
         style="gap: 10px"
       >
         <div class="text-body2 text-grey-darken-1 d-flex align-center">
-          <span class="pr-2">Hosts seen:</span>
-          <span class="text-grey-darken-3">{{ hosts.length }}</span>
+          <span class="pr-2">Devices seen:</span>
+          <span class="text-grey-darken-3">{{ devices.length }}</span>
         </div>
         <v-btn
           flat
@@ -39,17 +39,14 @@
         </thead>
         <tbody>
           <tr
-            v-for="{ name, ip, mac, isHostDevice } in hosts"
+            v-for="{ hostname, ip, mac } in devices"
             :key="ip"
           >
-            <td
-              class="text-center"
-              :class="{ 'font-weight-bold': isHostDevice }"
-            >
+            <td class="text-center">
               {{ ip }}
             </td>
             <td class="text-center">{{ mac }}</td>
-            <td class="text-center">{{ name }}</td>
+            <td class="text-center">{{ hostname }}</td>
             <td class="text-center">
               <v-btn
                 variant="text"
@@ -65,19 +62,19 @@
 </template>
 
 <script lang="ts" setup>
-  import { Host } from '~/types';
+import { DeviceInfo } from '~~/electron/utils/scanDevices';
 
-  const hosts = ref<Host[]>([]);
-  const fetching = ref(false);
-  const fetchLocalHosts = async () => {
-    fetching.value = true;
-    console.log('start to fetch hosts...');
-    hosts.value = await window.electronAPI.fetchLocalHosts();
-    fetching.value = false;
-    console.log('fetched', hosts.value.length, 'hosts');
-  };
+const devices = ref<DeviceInfo[]>([]);
+const fetching = ref(false);
+const scanDevices = async () => {
+  fetching.value = true;
+  console.log('start to fetch devices...');
+  devices.value = await window.electronAPI.scanDevices();
+  fetching.value = false;
+  console.log('fetched', devices.value.length, 'devices');
+};
 
-  const handleRefresh = fetchLocalHosts;
+const handleRefresh = scanDevices;
 
-  fetchLocalHosts();
+scanDevices();
 </script>

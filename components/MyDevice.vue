@@ -6,14 +6,14 @@
   >
     <v-card-text>
       <div
-        class="d-flex pa-3"
+        class="d-flex pa-3 flex-wrap"
         style="gap: 25px"
       >
         <MyDeviceItem
-          v-for="{ name, value } in connection"
+          v-for="{ name, value } in device"
           :key="name"
           :name="name"
-          :value="value"
+          :value="value ?? '-'"
         ></MyDeviceItem>
       </div>
     </v-card-text>
@@ -21,35 +21,37 @@
 </template>
 
 <script setup lang="ts">
-  import { Device } from '~~/types';
+import { NetworkInterface } from '~~/electron/utils/getNetworkInterface';
 
-  const myDevice = ref<Device>();
-  const updateMyDevice = async () => {
-    myDevice.value = await window.electronAPI.getMyDevice();
-  };
-  updateMyDevice();
+const connected = ref(false);
 
-  const connection = computed(() => {
-    const connection = myDevice.value?.connection;
-    if (connection) {
-      return [
-        {
-          name: 'IP Address',
-          value: connection.address,
-        },
-        {
-          name: 'Netmask',
-          value: connection.netmask,
-        },
-        {
-          name: 'IP Version',
-          value: connection.family,
-        },
-        {
-          name: 'Interface Name',
-          value: connection.name,
-        },
-      ];
-    }
-  });
+const networkInterface = ref<NetworkInterface>();
+window.electronAPI.getNetworkInterface().then((device) => {
+  networkInterface.value = device;
+});
+
+const device = computed(() => {
+  return [
+    {
+      name: 'IP Address',
+      value: networkInterface.value?.address,
+    },
+    {
+      name: 'Mac address',
+      value: networkInterface.value?.mac,
+    },
+    {
+      name: 'Netmask',
+      value: networkInterface.value?.netmask,
+    },
+    {
+      name: 'IP Version',
+      value: networkInterface.value?.family,
+    },
+    {
+      name: 'Interface Name',
+      value: networkInterface.value?.name,
+    },
+  ];
+});
 </script>

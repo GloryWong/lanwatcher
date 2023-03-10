@@ -1,7 +1,7 @@
-import { Device } from './device.interface';
-import { Host } from './host.interface';
+import { NetworkInterface } from '~~/electron/utils/getNetworkInterface';
+import { DeviceInfo } from '~~/electron/utils/scanDevices';
 
 export interface ElectronAPI {
-  fetchLocalHosts: () => Promise<Host[]>;
-  getMyDevice: () => Promise<Device>;
+  scanDevices: () => Promise<DeviceInfo[]>;
+  getNetworkInterface: () => Promise<NetworkInterface | undefined>;
 }

@@ -1,7 +1,8 @@
 import path from 'path';
 import { release } from 'os';
 import { app, BrowserWindow, ipcMain, shell } from 'electron';
-import { fetchLocalHosts, getMyDevice } from './utils';
+import { scanDevices } from './utils/scanDevices';
+import { getNetworkInterface } from './utils/getNetworkInterface';
 
 // Remove electron security warnings only in development mode
 // Read more on https://www.electronjs.org/docs/latest/tutorial/securit
@@ -75,7 +76,7 @@ app.on('activate', () => {
 });
 
 app.whenReady().then(() => {
-  ipcMain.handle('getMyDevice', getMyDevice);
-  ipcMain.handle('fetchLocalHosts', fetchLocalHosts);
+  ipcMain.handle('getNetworkInterface', getNetworkInterface);
+  ipcMain.handle('scanDevices', scanDevices);
   createWindow();
 });
