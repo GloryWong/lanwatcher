@@ -31,6 +31,7 @@
       >
         <thead>
           <tr>
+            <th class="text-center">Ping</th>
             <th class="text-center">Ip Address</th>
             <th class="text-center">MAC Address</th>
             <th class="text-center">Hostname</th>
@@ -39,9 +40,16 @@
         </thead>
         <tbody>
           <tr
-            v-for="{ hostname, ip, mac } in devices"
+            v-for="{ ping, hostname, ip, mac } in devices"
             :key="ip"
           >
+            <td class="text-center">
+              <v-icon
+                icon="mdi-circle-medium"
+                size="x-large"
+                :color="ping ? 'green' : 'red'"
+              ></v-icon>
+            </td>
             <td class="text-center">
               {{ ip }}
             </td>

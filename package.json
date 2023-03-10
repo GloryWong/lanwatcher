@@ -20,6 +20,7 @@
   },
   "devDependencies": {
     "@nuxtjs/eslint-config-typescript": "^12.0.0",
+    "@types/ping": "^0.4.1",
     "@typescript-eslint/parser": "^5.54.1",
     "editorconfig": "^1.0.2",
     "electron": "^23.1.2",
@@ -43,6 +44,7 @@
   "dependencies": {
     "@mdi/font": "^7.1.96",
     "arpping": "^4.0.0",
+    "ping": "^0.4.2",
     "vuetify": "^3.1.4"
   }
 }

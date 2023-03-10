@@ -1,3 +1,4 @@
+import * as ping from 'ping';
 import { execPromise } from './execPromise';
 
 export interface DeviceInfo {
@@ -5,6 +6,7 @@ export interface DeviceInfo {
   mac: string;
   hostname: string;
   vendor: string;
+  ping: boolean;
 }
 
 function parseIpAndMac(line: string) {
@@ -51,9 +53,19 @@ export async function scanDevices() {
         mac: paddingMac(result.mac),
         hostname: '',
         vendor: '',
+        ping: false,
       };
       deviceInfos.push(deviceInfo);
     }
+  });
+
+  const pingPromises = deviceInfos.map(({ ip }) => ping.promise.probe(ip));
+  await Promise.allSettled(pingPromises).then((results) => {
+    results.forEach((result, index) => {
+      if (result.status === 'fulfilled') {
+        deviceInfos[index].ping = result.value.alive;
+      }
+    });
   });
 
   // const promises = deviceInfos.map((device) => getVendor(device.ip));
