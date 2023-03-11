@@ -33,8 +33,8 @@ let win: BrowserWindow | null = null;
 
 function createWindow() {
   win = new BrowserWindow({
-    width: 1200,
-    height: 800,
+    width: 900,
+    height: 600,
     webPreferences: {
       preload: path.join(__dirname, 'preload.js'),
     },

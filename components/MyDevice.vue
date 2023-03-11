@@ -3,6 +3,7 @@
     title="My Device"
     flat
     prepend-icon="mdi-laptop"
+    color="grey-lighten-5"
   >
     <v-card-text>
       <div

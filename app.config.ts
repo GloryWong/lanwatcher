@@ -1,5 +1,8 @@
+import packageJson from './package.json';
+
 export default defineAppConfig({
-  title: 'LAN Hosts Watcher',
+  title: packageJson.productName,
+  version: packageJson.version,
   theme: {
     dark: false,
   },

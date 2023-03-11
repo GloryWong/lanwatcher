@@ -7,7 +7,7 @@ export default defineNuxtConfig({
   build: {
     transpile: ['vuetify'],
   },
-  modules: ['nuxt-electron'],
+  modules: ['nuxt-electron', '@vueuse/nuxt'],
   typescript: {
     strict: true,
     shim: false,

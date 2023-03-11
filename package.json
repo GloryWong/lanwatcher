@@ -1,10 +1,28 @@
 {
   "name": "lanwatcher",
+  "productName": "LAN Watcher",
   "version": "0.1.0",
-  "description": "Watching the hosts in your local area network",
-  "author": "glorywong1001@gmail.com",
+  "description": "Watching the devices in local area network",
+  "author": "Glory Wong",
   "main": "dist-electron/main.js",
   "private": true,
+  "build": {
+    "appId": "com.glorywong.${name}",
+    "copyright": "Copyright © 2023 ${author}",
+    "asar": true,
+    "directories": {
+      "output": "release/${version}"
+    },
+    "files": [
+      ".output/**/*",
+      "dist-electron"
+    ],
+    "mac": {
+      "category": "public.app-category.utilities",
+      "artifactName": "${productName}-${version}-${os}-${arch}.${ext}",
+      "icon": "electron/lanwatcher.icns"
+    }
+  },
   "scripts": {
     "dev": "nuxt dev -o",
     "generate": "nuxt generate",
@@ -43,6 +61,8 @@
   },
   "dependencies": {
     "@mdi/font": "^7.1.96",
+    "@vueuse/core": "^9.13.0",
+    "@vueuse/nuxt": "^9.13.0",
     "arpping": "^4.0.0",
     "ping": "^0.4.2",
     "vuetify": "^3.1.4"

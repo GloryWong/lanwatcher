@@ -1,5 +1,4 @@
 export class Auto<E, T = E extends Promise<infer U> ? U : E> {
-  private timer: NodeJS.Timeout | null = null;
   private readonly execFn;
   private callback:
     | ((error: unknown | null, value: T | undefined) => void)
@@ -7,11 +6,17 @@ export class Auto<E, T = E extends Promise<infer U> ? U : E> {
 
   public readonly defaultInterval: number = 5000;
   private interval: number | undefined;
+  private timers = new Map<number, NodeJS.Timeout>();
 
-  constructor(execFn: (...args: any[]) => E, defaultInterval?: number) {
+  constructor(
+    execFn: (...args: any[]) => E,
+    callback?: (error: unknown | null, value: T | undefined) => void,
+    defaultInterval?: number,
+  ) {
     defaultInterval && this.ensureInterval('defaultInterval', defaultInterval);
     defaultInterval && (this.defaultInterval = defaultInterval);
     this.execFn = execFn;
+    this.callback = callback;
   }
 
   private ensureInterval(name: string, value: number) {
@@ -19,52 +24,53 @@ export class Auto<E, T = E extends Promise<infer U> ? U : E> {
       throw new Error(`${name} should be positive and greater than 0`);
   }
 
-  private setInterval(cb: () => void, interval: number) {
-    this.timer = setTimeout(() => {
-      cb();
-      this.setInterval(cb, interval);
+  private setInterval(id: number, cb: () => Promise<void>, interval: number) {
+    const timer = setTimeout(async () => {
+      await cb();
+      if (this.timers.has(id) !== null) {
+        this.setInterval(id, cb, interval);
+      }
     }, interval);
+    this.timers.set(id, timer);
   }
 
   /**
    * @param interval ms. Default to 5000
    */
-  public start(
-    callback: (error: unknown | null, value: T | undefined) => void,
-    interval?: number,
-  ) {
+  public start(interval?: number) {
     interval && this.ensureInterval('interval', interval);
 
     this.stop();
-    this.callback = callback;
     this.interval = interval === undefined ? this.defaultInterval : interval;
-    this.setInterval(() => {
-      try {
-        const result = this.execFn();
-        if (result instanceof Promise) {
-          result.then((v) => callback(null, v));
-        } else {
-          callback(null, result as unknown as T);
+    this.setInterval(
+      new Date().getTime() * Math.random(),
+      async () => {
+        try {
+          const result = await this.execFn();
+          if (this.callback) {
+            this.callback(null, result as unknown as T);
+          }
+        } catch (error) {
+          this.callback && this.callback(error, undefined);
         }
-      } catch (error) {
-        callback(error, undefined);
-      }
-    }, this.interval);
+      },
+      this.interval,
+    );
   }
 
   public stop() {
-    if (this.timer) {
-      clearInterval(this.timer);
-      this.timer = null;
-    }
+    this.timers.forEach((timer) => clearTimeout(timer));
+    this.timers.clear();
   }
 
+  /**
+   * restart with the interval set by `start`
+   */
   public restart() {
-    if (!this.callback) {
-      console.error('Cannot trigger restart. It is not started before.');
-      return;
-    }
+    this.start(this.interval);
+  }
 
-    this.start(this.callback, this.interval);
+  public isRunning() {
+    return this.timers.size > 0;
   }
 }
