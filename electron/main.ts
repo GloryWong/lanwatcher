@@ -3,6 +3,7 @@ import { release } from 'os';
 import { app, BrowserWindow, ipcMain, shell } from 'electron';
 import { scanDevices } from './utils/scanDevices';
 import { getNetworkInterface } from './utils/getNetworkInterface';
+import { ping } from './utils/ping';
 
 // Remove electron security warnings only in development mode
 // Read more on https://www.electronjs.org/docs/latest/tutorial/securit
@@ -78,5 +79,6 @@ app.on('activate', () => {
 app.whenReady().then(() => {
   ipcMain.handle('getNetworkInterface', getNetworkInterface);
   ipcMain.handle('scanDevices', scanDevices);
+  ipcMain.handle('ping', (evt, ips: string[]) => ping(ips));
   createWindow();
 });

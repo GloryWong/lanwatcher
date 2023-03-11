@@ -1,5 +1,5 @@
-import * as ping from 'ping';
 import { execPromise } from './execPromise';
+import { ping } from './ping';
 
 export interface DeviceInfo {
   ip: string;
@@ -59,13 +59,12 @@ export async function scanDevices() {
     }
   });
 
-  const pingPromises = deviceInfos.map(({ ip }) => ping.promise.probe(ip));
-  await Promise.allSettled(pingPromises).then((results) => {
-    results.forEach((result, index) => {
-      if (result.status === 'fulfilled') {
-        deviceInfos[index].ping = result.value.alive;
-      }
-    });
+  const pingResponses = await ping(deviceInfos.map((v) => v.ip));
+  pingResponses.forEach((pr) => {
+    const deviceInfo = deviceInfos.find((di) => di.ip === pr.host);
+    if (deviceInfo) {
+      deviceInfo.ping = pr.alive;
+    }
   });
 
   // const promises = deviceInfos.map((device) => getVendor(device.ip));

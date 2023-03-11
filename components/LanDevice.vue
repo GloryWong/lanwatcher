@@ -85,4 +85,22 @@ const scanDevices = async () => {
 const handleRefresh = scanDevices;
 
 scanDevices();
+
+// auto ping
+const auto = new Auto(async () => {
+  const ips = devices.value.map((v) => v.ip);
+  const rsps = await window.electronAPI.ping(ips);
+  return rsps;
+});
+auto.start((err, pingRsps) => {
+  if (err) {
+    console.warn('ping failed');
+    return;
+  }
+
+  pingRsps?.forEach((pingRsp) => {
+    const device = devices.value.find((v) => v.ip === pingRsp.inputHost);
+    device && (device.ping = pingRsp.alive);
+  });
+});
 </script>
