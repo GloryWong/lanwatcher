@@ -21,6 +21,12 @@
       "category": "public.app-category.utilities",
       "artifactName": "${productName}-${version}-${os}-${arch}.${ext}",
       "icon": "electron/lanwatcher.icns"
+    },
+    "publish": {
+      "provider": "github",
+      "owner": "GloryWong",
+      "repo": "lanwatcher",
+      "releaseType": "release"
     }
   },
   "scripts": {
@@ -30,6 +36,8 @@
     "postinstall": "nuxt prepare && electron-builder install-app-deps",
     "pack": "nuxt generate && electron-builder --dir",
     "dist": "nuxt generate && electron-builder",
+    "build": "nuxt generate && electron-builder build",
+    "publish": "electron-builder --publish onTag",
     "lint:js": "eslint --ext \".ts,.vue\" --ignore-path .gitignore .",
     "lint:prettier": "prettier --check .",
     "lint": "yarn lint:js && yarn lint:prettier",
