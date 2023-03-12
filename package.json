@@ -20,7 +20,7 @@
     "mac": {
       "category": "public.app-category.utilities",
       "artifactName": "${productName}-${version}-${os}-${arch}.${ext}",
-      "icon": "electron/lanwatcher.icns"
+      "icon": "assets/lanwatcher.icns"
     },
     "publish": {
       "provider": "github",
@@ -35,9 +35,8 @@
     "preview": "nuxt preview",
     "postinstall": "nuxt prepare && electron-builder install-app-deps",
     "pack": "nuxt generate && electron-builder --dir",
-    "dist": "nuxt generate && electron-builder",
-    "build": "nuxt generate && electron-builder build",
-    "publish": "electron-builder --publish onTag",
+    "build": "nuxt generate && electron-builder",
+    "publish": "electron-builder --publish=onTagOrDraft",
     "lint:js": "eslint --ext \".ts,.vue\" --ignore-path .gitignore .",
     "lint:prettier": "prettier --check .",
     "lint": "yarn lint:js && yarn lint:prettier",
@@ -71,7 +70,6 @@
     "@mdi/font": "^7.1.96",
     "@vueuse/core": "^9.13.0",
     "@vueuse/nuxt": "^9.13.0",
-    "arpping": "^4.0.0",
     "ping": "^0.4.2",
     "vuetify": "^3.1.4"
   }
