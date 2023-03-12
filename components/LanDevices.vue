@@ -1,7 +1,6 @@
 <template>
   <v-card
     title="LAN Devices"
-    subtitle="All devices in your local area network"
     prepend-icon="mdi-lan"
     flat
     class="d-flex flex-column"
@@ -20,21 +19,23 @@
         </div>
         <v-divider vertical></v-divider>
         <v-btn
-          flat
+          variant="text"
+          color="primary"
           prepend-icon="mdi-refresh"
           :disabled="scanBtnDisabled"
           @click="scan"
           >Scan</v-btn
         >
         <v-btn
-          flat
+          variant="text"
+          color="primary"
           :prepend-icon="autoScanning ? 'mdi-stop' : 'mdi-autorenew'"
           @click="handleAutoScanClick"
           >{{ autoScanning ? 'Stop' : 'Auto' }}</v-btn
         >
       </div>
     </template>
-    <v-card-text class="flex-column h-0">
+    <v-card-text class="flex-column h-0 pa-0">
       <LanDevicesTable :devices="devices" />
     </v-card-text>
   </v-card>

@@ -5,6 +5,8 @@
   >
     <v-table
       fixed-header
+      density="compact"
+      hover
       :height="containerHeight"
     >
       <thead>

@@ -5,6 +5,12 @@
     prepend-icon="mdi-laptop"
     color="grey-lighten-5"
   >
+    <template #append>
+      <div class="text-body2 text-grey-darken-1 d-flex align-center pr-4">
+        <span class="pr-2">Current interface:</span>
+        <span class="text-grey-darken-3">{{ networkInterface?.name }}</span>
+      </div>
+    </template>
     <v-card-text>
       <div
         class="d-flex pa-3 flex-wrap"
@@ -48,10 +54,6 @@ const device = computed(() => {
     {
       name: 'IP Version',
       value: networkInterface.value?.family,
-    },
-    {
-      name: 'Interface Name',
-      value: networkInterface.value?.name,
     },
   ];
 });
