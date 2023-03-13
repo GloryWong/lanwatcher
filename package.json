@@ -36,7 +36,7 @@
     "postinstall": "nuxt prepare && electron-builder install-app-deps",
     "pack": "nuxt generate && electron-builder --dir",
     "build": "nuxt generate && electron-builder",
-    "publish": "electron-builder --publish=onTagOrDraft",
+    "publish": "nuxt generate && electron-builder --publish=onTagOrDraft",
     "lint:js": "eslint --ext \".ts,.vue\" --ignore-path .gitignore .",
     "lint:prettier": "prettier --check .",
     "lint": "yarn lint:js && yarn lint:prettier",

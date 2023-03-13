@@ -10,6 +10,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
+        with:
+          fetch-depth: 2
       - name: Get previous version
         id: get_previous_version
         run: echo "prev_version=$(git show HEAD~1:package.json | jq -r .version)" >> $GITHUB_OUTPUT
@@ -25,7 +27,7 @@ jobs:
             echo "No changes to package version"
           fi
       - uses: actions/setup-node@v3
-        if: steps.compare_versions.version_changed == true
+        if: steps.compare_versions.version_changed == 'true'
         with:
           node-version: 14
           cache: 'npm'
