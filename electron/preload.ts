@@ -1,5 +1,5 @@
 import { contextBridge, ipcRenderer } from 'electron';
-import { ElectronAPI } from '~~/types';
+import { DarkMode, ElectronAPI } from '~~/types';
 
 contextBridge.exposeInMainWorld('electronAPI', {
   scanDevices: () => ipcRenderer.invoke('scanDevices'),
@@ -11,3 +11,8 @@ contextBridge.exposeInMainWorld('electronAPI', {
   //   }),
   // onDisconnect: (callback) => ipcRenderer.on('disconnect', callback),
 } as ElectronAPI);
+
+contextBridge.exposeInMainWorld('darkMode', {
+  toggle: () => ipcRenderer.invoke('dark-mode:toggle'),
+  system: () => ipcRenderer.invoke('dark-mode:system'),
+} as DarkMode);

@@ -1,2 +1,2 @@
 export * from './electron-api.interface';
-export * from './engine-interfaces';
+export * from './dark-mode.interface';

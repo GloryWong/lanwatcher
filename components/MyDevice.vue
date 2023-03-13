@@ -3,12 +3,12 @@
     title="My Device"
     flat
     prepend-icon="mdi-laptop"
-    color="grey-lighten-5"
+    :rounded="0"
   >
     <template #append>
-      <div class="text-body2 text-grey-darken-1 d-flex align-center pr-4">
-        <span class="pr-2">Current interface:</span>
-        <span class="text-grey-darken-3">{{ networkInterface?.name }}</span>
+      <div class="text-body2 d-flex align-center pr-4">
+        <span class="pr-2 text-grey-darken-1">Current interface:</span>
+        <span>{{ networkInterface?.name }}</span>
       </div>
     </template>
     <v-card-text>
@@ -29,8 +29,6 @@
 
 <script setup lang="ts">
 import { NetworkInterface } from '~~/electron/utils/getNetworkInterface';
-
-const connected = ref(false);
 
 const networkInterface = ref<NetworkInterface>();
 window.electronAPI.getNetworkInterface().then((device) => {

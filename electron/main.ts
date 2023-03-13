@@ -1,6 +1,6 @@
 import path from 'path';
 import { release } from 'os';
-import { app, BrowserWindow, ipcMain, shell } from 'electron';
+import { app, BrowserWindow, ipcMain, nativeTheme, shell } from 'electron';
 import { scanDevices } from './utils/scanDevices';
 import { getNetworkInterface } from './utils/getNetworkInterface';
 import { ping } from './utils/ping';
@@ -80,5 +80,13 @@ app.whenReady().then(() => {
   ipcMain.handle('getNetworkInterface', getNetworkInterface);
   ipcMain.handle('scanDevices', scanDevices);
   ipcMain.handle('ping', (evt, ips: string[]) => ping(ips));
+  ipcMain.handle('dark-mode:toggle', () => {
+    if (nativeTheme.shouldUseDarkColors) {
+      nativeTheme.themeSource = 'light';
+    } else {
+      nativeTheme.themeSource = 'dark';
+    }
+    return nativeTheme.shouldUseDarkColors;
+  });
   createWindow();
 });

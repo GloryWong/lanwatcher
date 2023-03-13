@@ -4,6 +4,7 @@
     prepend-icon="mdi-lan"
     flat
     class="d-flex flex-column"
+    :rounded="0"
     :loading="scanning"
   >
     <template #append>
@@ -11,11 +12,9 @@
         class="d-flex aligh-center"
         style="gap: 10px"
       >
-        <div class="text-body2 text-grey-darken-1 d-flex align-center">
-          <span class="pr-2">Devices seen:</span>
-          <span class="text-grey-darken-3"
-            >{{ pingableDevicesNum }} / {{ devicesNum }}</span
-          >
+        <div class="text-body2 d-flex align-center">
+          <span class="pr-2 text-grey-darken-1">Devices seen:</span>
+          <span>{{ pingableDevicesNum }} / {{ devicesNum }}</span>
         </div>
         <v-divider vertical></v-divider>
         <v-btn
