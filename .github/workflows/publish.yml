@@ -24,11 +24,10 @@ jobs:
           if [ "${{ steps.get_previous_version.outputs.prev_version }}" != "${{ steps.get_current_version.outputs.curr_version }}" ]; then
             echo "version_changed=true" >> $GITHUB_OUTPUT
           else
-            echo "version_changed=false" >> $GITHUB_OUTPUT
             echo "No changes to package version"
           fi
-      - run: |
           echo "${{ steps.compare_versions.version_changed }}"
+      - run: |
           echo "${{ steps.compare_versions.version_changed == 'true' }}"
       - uses: actions/setup-node@v3
         if: steps.compare_versions.version_changed == 'true'
