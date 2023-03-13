@@ -17,15 +17,15 @@ jobs:
         id: get_current_version
         run: echo "curr_version=$(jq -r .version package.json)" >> $GITHUB_OUTPUT
       - name: Compare versions
+        id: compare_versions
         run: |
           if [ "${{ steps.get_previous_version.outputs.prev_version }}" != "${{ steps.get_current_version.outputs.curr_version }}" ]; then
-            echo "package.version has changed"
+            echo "version_changed=true" >> $GITHUB_OUTPUT
           else
             echo "No changes to package version"
-            exit 1
           fi
       - uses: actions/setup-node@v3
-        if: ${{ success() }}
+        if: steps.compare_versions.version_changed == 'true'
         with:
           node-version: 14
           cache: 'npm'
@@ -35,4 +35,3 @@ jobs:
         env:
           GH_TOKEN: ${{ secrets.token }}
         run: npm run publish
-      - run: echo "Done!"
