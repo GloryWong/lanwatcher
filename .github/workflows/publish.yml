@@ -27,15 +27,17 @@ jobs:
             echo "No changes to package version"
           fi
       - uses: actions/setup-node@v3
-        if: steps.compare_versions.version_changed == true
+        if: steps.compare_versions.version_changed == 'true'
         with:
           node-version: 14
           cache: 'npm'
       - name: 'Install dependencies'
-        if: steps.compare_versions.version_changed == true
+        if: steps.compare_versions.version_changed == 'true'
         run: npm ci
       - name: Build and publish electron release
-        if: steps.compare_versions.version_changed == true
+        if: steps.compare_versions.version_changed == 'true'
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: npm run publish
+      - run: echo "Release ${{ steps.get_current_version.outputs.curr_version }} is published."
+        if: steps.compare_versions.version_changed == 'true'
