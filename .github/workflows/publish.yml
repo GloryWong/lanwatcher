@@ -25,16 +25,17 @@ jobs:
             echo "version_changed=true" >> $GITHUB_OUTPUT
           else
             echo "No changes to package version"
-            exit 1
           fi
       - uses: actions/setup-node@v3
-        if: steps.compare_versions.version_changed == 'true'
+        if: steps.compare_versions.version_changed == true
         with:
           node-version: 14
           cache: 'npm'
       - name: 'Install dependencies'
+        if: steps.compare_versions.version_changed == true
         run: npm ci
       - name: Build and publish electron release
+        if: steps.compare_versions.version_changed == true
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: npm run publish
