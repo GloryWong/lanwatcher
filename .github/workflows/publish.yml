@@ -25,7 +25,7 @@ jobs:
             echo "No changes to package version"
           fi
       - uses: actions/setup-node@v3
-        if: steps.compare_versions.version_changed == "true"
+        if: steps.compare_versions.version_changed == true
         with:
           node-version: 14
           cache: 'npm'
