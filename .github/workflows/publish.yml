@@ -1,0 +1,38 @@
+name: Publish
+on:
+  push:
+    branches:
+      - master
+    paths:
+      - 'package.json'
+jobs:
+  check-and-publish:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Get previous version
+        id: get_previous_version
+        run: echo ::set-output name=prev_version::$(git show HEAD~1:package.json | jq -r .version)
+      - name: Get current version
+        id: get_current_version
+        run: echo ::set-output name=curr_version::$(jq -r .version package.json)
+      - name: Compare versions
+        run: |
+          if [ "${{ steps.get_prev_version.outputs.prev_version }}" != "${{ steps.get_current_version.outputs.curr_version }}" ]; then
+            echo "package.version has changed"
+          else
+            echo "No changes to package version"
+            exit 1
+          fi
+      - uses: actions/setup-node@v3
+        if: ${{ success() }}
+        with:
+          node-version: 14
+          cache: 'npm'
+      - name: 'Install dependencies'
+        run: npm ci
+      - name: Build and publish electron release
+        env:
+          GH_TOKEN: ${{ secrets.token }}
+        run: npm run publish
+      - run: echo "Done!"
