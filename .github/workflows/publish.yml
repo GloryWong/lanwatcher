@@ -9,9 +9,9 @@ jobs:
   check-and-publish:
     runs-on: macos-latest
     permissions:
-      actions: read/write
-      contents: read/write
-      packages: read/write
+      actions: read
+      contents: read
+      packages: write
     steps:
       - uses: actions/checkout@v3
         with:
