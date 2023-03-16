@@ -33,7 +33,7 @@ jobs:
       - uses: actions/setup-node@v3
         if: steps.compare_versions.outputs.version_changed == 'true'
         with:
-          node-version: 19
+          node-version: 16
       - name: 'Install dependencies'
         if: steps.compare_versions.outputs.version_changed == 'true'
         run: npm ci

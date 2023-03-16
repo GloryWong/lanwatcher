@@ -23,4 +23,5 @@ export default defineNuxtConfig({
       middlewareMode: false,
     },
   },
+  debug: true,
 });

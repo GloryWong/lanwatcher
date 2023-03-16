@@ -1,11 +1,11 @@
 import { execPromise } from './execPromise';
+import { getVendorInfos, VendorInfo } from './getVendorInfos';
 import { ping } from './ping';
 
 export interface DeviceInfo {
   ip: string;
   mac: string;
-  hostname: string;
-  vendor: string;
+  vendorInfo: VendorInfo | null;
   ping: boolean;
 }
 
@@ -48,14 +48,13 @@ export async function scanDevices() {
   lines.forEach((line) => {
     const result = parseIpAndMac(line);
     if (result) {
-      const deviceInfo = {
+      const mac = paddingMac(result.mac);
+      deviceInfos.push({
         ip: result.ip,
-        mac: paddingMac(result.mac),
-        hostname: '',
-        vendor: '',
+        mac,
+        vendorInfo: getVendorInfos(mac),
         ping: false,
-      };
-      deviceInfos.push(deviceInfo);
+      });
     }
   });
 
@@ -67,7 +66,5 @@ export async function scanDevices() {
     }
   });
 
-  // const promises = deviceInfos.map((device) => getVendor(device.ip));
-  // await Promise.all(promises);
   return deviceInfos;
 }

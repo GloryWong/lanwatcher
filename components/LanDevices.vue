@@ -34,7 +34,7 @@
         >
       </div>
     </template>
-    <v-card-text class="flex-column h-0 pa-0">
+    <v-card-text class="flex-column h-0 pb-0">
       <LanDevicesTable :devices="devices" />
     </v-card-text>
   </v-card>

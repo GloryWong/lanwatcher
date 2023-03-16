@@ -11,15 +11,35 @@
     >
       <thead>
         <tr>
-          <th class="text-center">Ping</th>
-          <th class="text-center">Ip Address</th>
-          <th class="text-center">MAC Address</th>
-          <th class="text-center">Hostname</th>
+          <th
+            class="text-center"
+            style="width: 50px"
+          >
+            Ping
+          </th>
+          <th
+            class="text-center"
+            style="width: 150px"
+          >
+            Ip Address
+          </th>
+          <th
+            class="text-center"
+            style="width: 200px"
+          >
+            MAC Address
+          </th>
+          <th
+            class="text-center"
+            style="width: 200px"
+          >
+            Vendor
+          </th>
         </tr>
       </thead>
       <tbody>
         <tr
-          v-for="{ ping, hostname, ip, mac } in devices"
+          v-for="{ ping, vendorInfo, ip, mac } in devices"
           :key="ip"
         >
           <td class="text-center">
@@ -33,7 +53,12 @@
             {{ ip }}
           </td>
           <td class="text-center">{{ mac }}</td>
-          <td class="text-center">{{ hostname }}</td>
+          <td class="text-center">
+            <LanDevicesTableVendor
+              v-if="vendorInfo"
+              :vendor-info="vendorInfo"
+            ></LanDevicesTableVendor>
+          </td>
         </tr>
       </tbody>
     </v-table>
