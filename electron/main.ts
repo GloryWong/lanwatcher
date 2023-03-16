@@ -44,7 +44,9 @@ function createWindow() {
     win.loadFile(path.join(process.env.VITE_PUBLIC!, 'index.html'));
   } else {
     win.loadURL(process.env.VITE_DEV_SERVER_URL!);
-    win.webContents.openDevTools();
+    win.webContents.openDevTools({
+      mode: 'undocked',
+    });
   }
 
   // Make all links open with the browser, not with the application

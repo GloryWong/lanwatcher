@@ -12,17 +12,23 @@
       </div>
     </template>
     <v-card-text>
-      <div
-        class="d-flex pa-3 flex-wrap"
-        style="gap: 25px"
+      <v-container
+        fluid
+        class="py-0"
       >
-        <MyDeviceItem
-          v-for="{ name, value } in device"
-          :key="name"
-          :name="name"
-          :value="value ?? '-'"
-        ></MyDeviceItem>
-      </div>
+        <v-row justify="start">
+          <v-col
+            v-for="{ name, value } in device"
+            :key="name"
+            :cols="true"
+          >
+            <MyDeviceItem
+              :name="name"
+              :value="value ?? '-'"
+            ></MyDeviceItem>
+          </v-col>
+        </v-row>
+      </v-container>
     </v-card-text>
   </v-card>
 </template>
@@ -38,11 +44,11 @@ window.electronAPI.getNetworkInterface().then((device) => {
 const device = computed(() => {
   return [
     {
-      name: 'IP Address',
+      name: 'IP address',
       value: networkInterface.value?.address,
     },
     {
-      name: 'Mac address',
+      name: 'MAC address',
       value: networkInterface.value?.mac,
     },
     {
@@ -50,7 +56,7 @@ const device = computed(() => {
       value: networkInterface.value?.netmask,
     },
     {
-      name: 'IP Version',
+      name: 'IP version',
       value: networkInterface.value?.family,
     },
   ];

@@ -21,19 +21,34 @@
             class="text-center"
             style="width: 150px"
           >
-            Ip Address
+            IP address
           </th>
           <th
             class="text-center"
             style="width: 200px"
           >
-            MAC Address
+            MAC address
           </th>
           <th
             class="text-center"
             style="width: 200px"
           >
-            Vendor
+            <div class="d-flex align-center justify-center">
+              Vendor
+              <v-tooltip>
+                <template #activator="{ props }">
+                  <v-btn
+                    density="comfortable"
+                    v-bind="props"
+                    variant="text"
+                    size="x-small"
+                    icon="mdi-help-circle-outline"
+                  >
+                  </v-btn>
+                </template>
+                Vendor infos are retrieved from IEEE standards-oui
+              </v-tooltip>
+            </div>
           </th>
         </tr>
       </thead>

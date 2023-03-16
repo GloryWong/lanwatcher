@@ -1,12 +1,53 @@
 <template>
-  <v-btn
-    variant="text"
-    block
-    @click="show = true"
+  <v-menu
+    v-model="show"
+    :close-on-content-click="false"
   >
-    {{ vendorInfo.company }}
-  </v-btn>
-  <v-dialog
+    <template #activator="{ props }">
+      <v-chip
+        v-bind="props"
+        link
+        variant="text"
+        :rounded="0"
+        class="d-flex justify-center text-truncate h-100"
+        :text="vendorInfo.company"
+      >
+      </v-chip>
+    </template>
+    <v-card
+      title="Vendor"
+      max-width="500px"
+    >
+      <v-card-text>
+        <div
+          class="d-flex flex-column"
+          style="gap: 2px"
+        >
+          <div
+            v-for="{ name, value } in infoDisplay"
+            :key="name"
+            class="d-flex"
+          >
+            <div
+              style="width: 125px"
+              class="mr-2 text-body-1 text-grey-darken-1 flex-shrink-0 text-right"
+            >
+              {{ name }}:
+            </div>
+            <div class="text-body-1">{{ value }}</div>
+          </div>
+        </div>
+      </v-card-text>
+      <template #append>
+        <v-btn
+          icon="mdi-close"
+          variant="text"
+          @click="show = false"
+        ></v-btn>
+      </template>
+    </v-card>
+  </v-menu>
+  <!-- <v-dialog
     v-model="show"
     width="auto"
   >
@@ -39,7 +80,7 @@
         >
       </v-card-actions>
     </v-card>
-  </v-dialog>
+  </v-dialog> -->
 </template>
 
 <script setup lang="ts">
