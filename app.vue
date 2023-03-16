@@ -10,7 +10,7 @@
             <v-divider></v-divider>
             <v-footer class="flex-grow-0 justify-end">
               <v-btn
-                :icon="isDark ? 'mdi-weather-night' : 'mdi-weather-sunny'"
+                :icon="isDark ? 'mdi-weather-sunny' : 'mdi-weather-night'"
                 density="comfortable"
                 flat
                 @click="toggleDarkMode()"
