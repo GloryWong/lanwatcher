@@ -27,6 +27,33 @@
               :value="value ?? '-'"
             ></MyDeviceItem>
           </v-col>
+          <v-col>
+            <MyDeviceItem name="Subnet info">
+              <v-btn
+                density="comfortable"
+                variant="flat"
+                icon="mdi-information-slab-circle-outline"
+                @click="sudbnetInfoDialogShow = true"
+              ></v-btn>
+              <v-dialog
+                v-model="sudbnetInfoDialogShow"
+                width="auto"
+              >
+                <v-card title="Subnet Info">
+                  <v-card-text>
+                    <MyDeviceSubnetInfo />
+                  </v-card-text>
+                  <v-card-actions class="justify-end">
+                    <v-btn
+                      color="primary"
+                      @click="sudbnetInfoDialogShow = false"
+                      >Close</v-btn
+                    >
+                  </v-card-actions>
+                </v-card>
+              </v-dialog>
+            </MyDeviceItem>
+          </v-col>
         </v-row>
       </v-container>
     </v-card-text>
@@ -47,13 +74,11 @@ const device = computed(() => {
       value: networkInfo.value?.mac,
     },
     {
-      name: 'Netmask',
-      value: networkInfo.value?.netmask,
-    },
-    {
       name: 'IP version',
       value: networkInfo.value?.family,
     },
   ];
 });
+
+const sudbnetInfoDialogShow = ref(false);
 </script>
