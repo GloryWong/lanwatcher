@@ -48,6 +48,7 @@ const pingableDevicesNum = computed(
 
 const { devices, scan, scanning, startAutoScan, stopAutoScan, autoScanning } =
   useDevices();
+const { networkInfo } = useNetworkInfo();
 
 // scan once create
 scan();
@@ -66,9 +67,13 @@ const scanBtnDisabled = computed(() => {
 
 // auto ping
 const autoPing = new Auto(async () => {
+  if (!networkInfo.value) return;
   console.log('ping');
-  const ips = devices.value.map((v) => v.ip);
-  const pingRsps = await window.electronAPI.ping(ips);
+  const { firstAddressLong, lastAddressLong } = networkInfo.value.subnetInfo;
+  const pingRsps = await window.electronAPI.pingRange(
+    firstAddressLong,
+    lastAddressLong,
+  );
   pingRsps.forEach((pingRsp) => {
     const device = devices.value.find((v) => v.ip === pingRsp.inputHost);
     device && (device.ping = pingRsp.alive);
