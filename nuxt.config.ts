@@ -8,6 +8,13 @@ export default defineNuxtConfig({
     transpile: ['vuetify'],
   },
   modules: ['nuxt-electron', '@vueuse/nuxt'],
+  electron: {
+    build: [
+      {
+        entry: 'electron/main.ts',
+      },
+    ],
+  },
   typescript: {
     strict: true,
     shim: false,
