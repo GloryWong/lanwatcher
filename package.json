@@ -1,7 +1,7 @@
 {
   "name": "lanwatcher",
   "productName": "LAN Watcher",
-  "version": "0.3.1",
+  "version": "0.4.0",
   "description": "Watching the devices in local area network",
   "author": "Glory Wong",
   "main": "dist-electron/main.js",

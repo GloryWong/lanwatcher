@@ -64,7 +64,12 @@
               :color="ping ? 'green' : 'red'"
             ></v-icon>
           </td>
-          <td class="text-center">
+          <td
+            class="text-center"
+            :class="{
+              'font-weight-black': ip === networkInfo?.address,
+            }"
+          >
             {{ ip }}
           </td>
           <td class="text-center">{{ mac }}</td>
@@ -86,6 +91,8 @@ import { DeviceInfo } from '~~/electron/utils/scanDevices';
 defineProps<{
   devices: DeviceInfo[];
 }>();
+
+const { networkInfo } = useNetworkInfo();
 
 const container = ref(null);
 const containerHeight = ref(300);
