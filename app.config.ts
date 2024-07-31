@@ -1,4 +1,4 @@
-import packageJson from './package.json';
+import packageJson from './package.json'
 
 export default defineAppConfig({
   title: packageJson.productName,
@@ -6,4 +6,4 @@ export default defineAppConfig({
   theme: {
     dark: false,
   },
-});
+})

@@ -4,7 +4,7 @@ on:
     branches:
       - master
     paths:
-      - 'package.json'
+      - package.json
 jobs:
   check-and-publish:
     runs-on: macos-latest
@@ -34,7 +34,7 @@ jobs:
         if: steps.compare_versions.outputs.version_changed == 'true'
         with:
           node-version: 16
-      - name: 'Install dependencies'
+      - name: Install dependencies
         if: steps.compare_versions.outputs.version_changed == 'true'
         run: npm ci
       - name: Build and publish electron release

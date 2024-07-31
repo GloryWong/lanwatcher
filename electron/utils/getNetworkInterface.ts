@@ -1,18 +1,19 @@
-import os from 'os';
+import os from 'node:os'
 
 export interface NetworkInterface {
-  name: string;
-  address: string;
-  netmask: string;
-  family: string;
-  mac: string;
+  name: string
+  address: string
+  netmask: string
+  family: string
+  mac: string
 }
 
 export function getNetworkInterface() {
-  const interfaceInfosDic = os.networkInterfaces();
+  const interfaceInfosDic = os.networkInterfaces()
 
   for (const [name, interfaceInfos] of Object.entries(interfaceInfosDic)) {
-    if (!interfaceInfos) continue;
+    if (!interfaceInfos)
+      continue
 
     for (const interfaceInfo of interfaceInfos) {
       if (interfaceInfo.family === 'IPv4' && !interfaceInfo.internal) {
@@ -22,7 +23,7 @@ export function getNetworkInterface() {
           netmask: interfaceInfo.netmask,
           family: interfaceInfo.family,
           mac: interfaceInfo.mac,
-        } as NetworkInterface;
+        } as NetworkInterface
       }
     }
   }

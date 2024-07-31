@@ -1,29 +1,9 @@
-<template>
-  <div
-    class="d-flex flex-column"
-    style="gap: 2px"
-  >
-    <div
-      v-for="{ name, value } in subnetInfo"
-      :key="name"
-      class="d-flex"
-    >
-      <div
-        style="width: 170px"
-        class="mr-2 text-body-1 text-grey-darken-1 flex-shrink-0 text-right"
-      >
-        {{ name }}:
-      </div>
-      <div class="text-body-1">{{ value }}</div>
-    </div>
-  </div>
-</template>
-
 <script setup lang="ts">
-const { networkInfo } = useNetworkInfo();
+const { networkInfo } = useNetworkInfo()
 const subnetInfo = computed(() => {
-  if (!networkInfo.value) return [];
-  const subnetInfo = networkInfo.value?.subnetInfo;
+  if (!networkInfo.value)
+    return []
+  const subnetInfo = networkInfo.value?.subnetInfo
 
   return [
     {
@@ -58,8 +38,31 @@ const subnetInfo = computed(() => {
       name: 'Last address',
       value: subnetInfo.lastAddress,
     },
-  ];
-});
+  ]
+})
 </script>
+
+<template>
+  <div
+    class="d-flex flex-column"
+    style="gap: 2px"
+  >
+    <div
+      v-for="{ name, value } in subnetInfo"
+      :key="name"
+      class="d-flex"
+    >
+      <div
+        style="width: 170px"
+        class="mr-2 text-body-1 text-grey-darken-1 flex-shrink-0 text-right"
+      >
+        {{ name }}:
+      </div>
+      <div class="text-body-1">
+        {{ value }}
+      </div>
+    </div>
+  </div>
+</template>
 
 <style scoped></style>

@@ -1,18 +1,37 @@
+<script setup lang="ts">
+import type { VendorInfo } from '~~/electron/utils/getVendorInfos'
+
+const props = defineProps<{
+  vendorInfo: VendorInfo
+}>()
+
+const show = ref(false)
+
+const infoDisplay = computed(() => {
+  const { company, address, city, country, flag } = props.vendorInfo
+  return [
+    { name: 'Company', value: company },
+    { name: 'Address', value: address },
+    { name: 'City', value: city },
+    { name: 'Country/Region', value: `${country} ${flag}` },
+  ]
+})
+</script>
+
 <template>
   <v-menu
     v-model="show"
     :close-on-content-click="false"
   >
-    <template #activator="{ props }">
+    <template #activator="{ props: _props }">
       <v-chip
-        v-bind="props"
+        v-bind="_props"
         link
         variant="text"
         :rounded="0"
         class="d-flex justify-center text-truncate h-100"
         :text="vendorInfo.company"
-      >
-      </v-chip>
+      />
     </template>
     <v-card
       title="Vendor"
@@ -34,7 +53,9 @@
             >
               {{ name }}:
             </div>
-            <div class="text-body-1">{{ value }}</div>
+            <div class="text-body-1">
+              {{ value }}
+            </div>
           </div>
         </div>
       </v-card-text>
@@ -43,7 +64,7 @@
           icon="mdi-close"
           variant="text"
           @click="show = false"
-        ></v-btn>
+        />
       </template>
     </v-card>
   </v-menu>
@@ -82,23 +103,3 @@
     </v-card>
   </v-dialog> -->
 </template>
-
-<script setup lang="ts">
-import { VendorInfo } from '~~/electron/utils/getVendorInfos';
-
-const props = defineProps<{
-  vendorInfo: VendorInfo;
-}>();
-
-const show = ref(false);
-
-const infoDisplay = computed(() => {
-  const { company, address, city, country, flag } = props.vendorInfo;
-  return [
-    { name: 'Company', value: company },
-    { name: 'Address', value: address },
-    { name: 'City', value: city },
-    { name: 'Country/Region', value: `${country} ${flag}` },
-  ];
-});
-</script>

@@ -1,3 +1,26 @@
+<script setup lang="ts">
+const { networkInfo } = useNetworkInfo()
+
+const device = computed(() => {
+  return [
+    {
+      name: 'IP address',
+      value: networkInfo.value?.address,
+    },
+    {
+      name: 'MAC address',
+      value: networkInfo.value?.mac,
+    },
+    {
+      name: 'IP version',
+      value: networkInfo.value?.family,
+    },
+  ]
+})
+
+const sudbnetInfoDialogShow = ref(false)
+</script>
+
 <template>
   <v-card
     title="My Device"
@@ -25,7 +48,7 @@
             <MyDeviceItem
               :name="name"
               :value="value ?? '-'"
-            ></MyDeviceItem>
+            />
           </v-col>
           <v-col>
             <MyDeviceItem name="Subnet info">
@@ -34,7 +57,7 @@
                 variant="flat"
                 icon="mdi-information-slab-circle-outline"
                 @click="sudbnetInfoDialogShow = true"
-              ></v-btn>
+              />
               <v-dialog
                 v-model="sudbnetInfoDialogShow"
                 width="auto"
@@ -47,8 +70,9 @@
                     <v-btn
                       color="primary"
                       @click="sudbnetInfoDialogShow = false"
-                      >Close</v-btn
                     >
+                      Close
+                    </v-btn>
                   </v-card-actions>
                 </v-card>
               </v-dialog>
@@ -59,26 +83,3 @@
     </v-card-text>
   </v-card>
 </template>
-
-<script setup lang="ts">
-const { networkInfo } = useNetworkInfo();
-
-const device = computed(() => {
-  return [
-    {
-      name: 'IP address',
-      value: networkInfo.value?.address,
-    },
-    {
-      name: 'MAC address',
-      value: networkInfo.value?.mac,
-    },
-    {
-      name: 'IP version',
-      value: networkInfo.value?.family,
-    },
-  ];
-});
-
-const sudbnetInfoDialogShow = ref(false);
-</script>
