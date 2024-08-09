@@ -27,8 +27,8 @@ importers:
         specifier: ^2.0.1
         version: 2.0.1
       oui-data:
-        specifier: ^1.1.160
-        version: 1.1.160
+        specifier: ^1.1.161
+        version: 1.1.164
       ping:
         specifier: ^0.4.4
         version: 0.4.4
@@ -3864,8 +3864,8 @@ packages:
     resolution: {integrity: sha512-JjCoypp+jKn1ttEFExxhetCKeJt9zhAgAve5FXHixTvFDW/5aEktX9bufBKLRRMdU7bNtpLfcGu94B3cdEJgjg==}
     engines: {node: '>= 0.8.0'}
 
-  oui-data@1.1.160:
-    resolution: {integrity: sha512-nXIBg7z48Yu8AoIxBoMM0/Hn1PHgPaQvkNu/dlAsxI6jHNqsuDnydIiz3WBX5477JSvQcLyMF6+EqBhKUqCw7A==}
+  oui-data@1.1.164:
+    resolution: {integrity: sha512-HvJK5uah4/uzA2ZlipVWC00E2qlReAlrV7g+a5WQVMHoapbrxYwIR30y+WYDxfD6KHgZq7jkIFPbYSkQi7Ig/w==}
 
   p-cancelable@2.1.1:
     resolution: {integrity: sha512-BZOr3nRQHOntUjTrH8+Lh54smKHoHyur8We1V8DSMVrl5A2malOOwuJRnKRDjSnkoeBh4at6BwEnb5I7Jl31wg==}
@@ -9646,7 +9646,7 @@ snapshots:
       prelude-ls: 1.2.1
       type-check: 0.4.0
 
-  oui-data@1.1.160: {}
+  oui-data@1.1.164: {}
 
   p-cancelable@2.1.1: {}
 
