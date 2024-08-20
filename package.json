@@ -61,7 +61,7 @@
     "country-emoji": "^1.5.6",
     "electron-store": "^10.0.0",
     "ip": "^2.0.1",
-    "oui-data": "^1.1.167",
+    "oui-data": "^1.1.168",
     "ping": "^0.4.4",
     "vuetify": "^3.7.0"
   },
@@ -81,10 +81,10 @@
     "nuxt-electron": "^0.7.0",
     "sass": "^1.77.8",
     "simple-git-hooks": "^2.11.1",
-    "type-fest": "^4.24.0",
+    "type-fest": "^4.25.0",
     "vite-plugin-electron": "^0.28.7",
     "vite-plugin-electron-renderer": "^0.14.5",
-    "vuetify-nuxt-module": "^0.16.1"
+    "vuetify-nuxt-module": "^0.17.0"
   },
   "simple-git-hooks": {
     "commit-msg": "pnpm commitlint --edit ${1}",
