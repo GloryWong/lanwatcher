@@ -84,7 +84,7 @@
     "type-fest": "^4.25.0",
     "vite-plugin-electron": "^0.28.7",
     "vite-plugin-electron-renderer": "^0.14.5",
-    "vuetify-nuxt-module": "^0.17.0"
+    "vuetify-nuxt-module": "^0.17.1"
   },
   "simple-git-hooks": {
     "commit-msg": "pnpm commitlint --edit ${1}",
