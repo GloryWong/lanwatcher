@@ -1,7 +1,7 @@
 {
   "name": "lanwatcher",
   "productName": "LAN Watcher",
-  "version": "0.4.1",
+  "version": "0.4.2",
   "private": true,
   "description": "Watching the devices in local area network",
   "author": {
