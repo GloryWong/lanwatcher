@@ -1,5 +1,13 @@
 # Changelog
 
+## [0.4.3](https://github.com/GloryWong/lanwatcher/compare/v0.4.2...v0.4.3) (2025-03-16)
+
+
+### Bug Fixes
+
+* **deps:** update all non-major dependencies ([#61](https://github.com/GloryWong/lanwatcher/issues/61)) ([718dbd5](https://github.com/GloryWong/lanwatcher/commit/718dbd5161b2b501d3ecd78015ae09e31d178295))
+* **deps:** update all non-major dependencies ([#64](https://github.com/GloryWong/lanwatcher/issues/64)) ([26e3ed2](https://github.com/GloryWong/lanwatcher/commit/26e3ed269f1fd7e296b947e7d35fb8ee8dd992ed))
+
 ## [0.4.2](https://github.com/GloryWong/lanwatcher/compare/v0.4.1...v0.4.2) (2025-03-08)
 
 
