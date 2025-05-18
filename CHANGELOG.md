@@ -1,5 +1,21 @@
 # Changelog
 
+## [0.4.3](https://github.com/GloryWong/lanwatcher/compare/v0.4.2...v0.4.3) (2025-05-18)
+
+
+### Bug Fixes
+
+* **deps:** update all non-major dependencies ([#61](https://github.com/GloryWong/lanwatcher/issues/61)) ([718dbd5](https://github.com/GloryWong/lanwatcher/commit/718dbd5161b2b501d3ecd78015ae09e31d178295))
+* **deps:** update all non-major dependencies ([#64](https://github.com/GloryWong/lanwatcher/issues/64)) ([26e3ed2](https://github.com/GloryWong/lanwatcher/commit/26e3ed269f1fd7e296b947e7d35fb8ee8dd992ed))
+* **deps:** update all non-major dependencies ([#66](https://github.com/GloryWong/lanwatcher/issues/66)) ([ca90043](https://github.com/GloryWong/lanwatcher/commit/ca9004317b57201b71905cfc9dfff7e8c603f339))
+* **deps:** update all non-major dependencies ([#68](https://github.com/GloryWong/lanwatcher/issues/68)) ([e981e01](https://github.com/GloryWong/lanwatcher/commit/e981e01acc9ef9db9bc9e5e5f552af0a6cd5bee8))
+* **deps:** update all non-major dependencies ([#70](https://github.com/GloryWong/lanwatcher/issues/70)) ([b80601e](https://github.com/GloryWong/lanwatcher/commit/b80601ec0f0cd785942ad6e289308dc37a620fab))
+* **deps:** update all non-major dependencies ([#71](https://github.com/GloryWong/lanwatcher/issues/71)) ([a2a244f](https://github.com/GloryWong/lanwatcher/commit/a2a244fd058da114a2df31c35e7cf75dd2de0cce))
+* **deps:** update all non-major dependencies ([#72](https://github.com/GloryWong/lanwatcher/issues/72)) ([d817b2f](https://github.com/GloryWong/lanwatcher/commit/d817b2f7b06653b95c414e64a62cd1325a5545e9))
+* **deps:** update all non-major dependencies ([#73](https://github.com/GloryWong/lanwatcher/issues/73)) ([61f91ad](https://github.com/GloryWong/lanwatcher/commit/61f91adb23563921dcf5e7b77ae7c39d517397a0))
+* **deps:** update all non-major dependencies ([#75](https://github.com/GloryWong/lanwatcher/issues/75)) ([476df50](https://github.com/GloryWong/lanwatcher/commit/476df506600668ccdb321ee0ee1a7ce65b9f3b8d))
+* **deps:** update all non-major dependencies ([#76](https://github.com/GloryWong/lanwatcher/issues/76)) ([e01968d](https://github.com/GloryWong/lanwatcher/commit/e01968d437d0da895dde07a7b24cfb1327ddbe09))
+
 ## [0.4.2](https://github.com/GloryWong/lanwatcher/compare/v0.4.1...v0.4.2) (2025-03-08)
 
 
