@@ -61,9 +61,9 @@
     "country-emoji": "^1.5.6",
     "electron-store": "^10.0.1",
     "ip": "^2.0.1",
-    "oui-data": "^1.1.351",
+    "oui-data": "^1.1.355",
     "ping": "^0.4.4",
-    "vuetify": "^3.8.6"
+    "vuetify": "^3.8.7"
   },
   "devDependencies": {
     "@antfu/eslint-config": "^4.13.2",
