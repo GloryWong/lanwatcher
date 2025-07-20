@@ -75,7 +75,7 @@
     "electron": "^31.7.7",
     "electron-builder": "^25.1.8",
     "eslint": "^9.31.0",
-    "lint-staged": "^15.5.2",
+    "lint-staged": "^16.1.2",
     "nuxi": "^3.26.2",
     "nuxt": "^3.17.7",
     "nuxt-electron": "^0.7.0",
