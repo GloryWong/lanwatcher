@@ -61,9 +61,9 @@
     "country-emoji": "^1.5.6",
     "electron-store": "^10.1.0",
     "ip": "^2.0.1",
-    "oui-data": "^1.1.401",
+    "oui-data": "^1.1.406",
     "ping": "^0.4.4",
-    "vuetify": "^3.9.4"
+    "vuetify": "^3.9.5"
   },
   "devDependencies": {
     "@antfu/eslint-config": "^4.19.0",
@@ -74,9 +74,9 @@
     "@types/ping": "^0.4.4",
     "electron": "^31.7.7",
     "electron-builder": "^25.1.8",
-    "eslint": "^9.32.0",
+    "eslint": "^9.33.0",
     "lint-staged": "^15.5.2",
-    "nuxi": "^3.27.0",
+    "nuxi": "^3.28.0",
     "nuxt": "^3.18.1",
     "nuxt-electron": "^0.7.0",
     "sass": "^1.90.0",
