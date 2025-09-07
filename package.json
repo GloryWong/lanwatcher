@@ -61,9 +61,9 @@
     "country-emoji": "^1.5.6",
     "electron-store": "^10.1.0",
     "ip": "^2.0.1",
-    "oui-data": "^1.1.416",
+    "oui-data": "^1.1.420",
     "ping": "^0.4.4",
-    "vuetify": "^3.9.6"
+    "vuetify": "^3.9.7"
   },
   "devDependencies": {
     "@antfu/eslint-config": "^4.19.0",
@@ -77,9 +77,9 @@
     "eslint": "^9.34.0",
     "lint-staged": "^15.5.2",
     "nuxi": "^3.28.0",
-    "nuxt": "^3.18.1",
+    "nuxt": "^3.19.0",
     "nuxt-electron": "^0.7.0",
-    "sass": "^1.91.0",
+    "sass": "^1.92.0",
     "simple-git-hooks": "^2.13.1",
     "type-fest": "^4.41.0",
     "vite-plugin-electron": "^0.29.0",
